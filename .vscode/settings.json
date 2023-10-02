@@ -1,0 +1,4 @@
+{
+  "prettier.documentSelectors": [".astro"],
+  "workbench.tree.indent": 4
+}

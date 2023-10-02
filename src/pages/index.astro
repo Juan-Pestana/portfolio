@@ -1,51 +1,92 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { Image } from 'astro:assets'
+import maiCoverImage from '../assets/images/landing_maiCover.png'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { getCollection } from 'astro:content'
+import PostCard from '../components/PostCard.astro'
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+const lastPosts = allPosts.slice(0, 3)
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main class="leading-normal max-w-screen-md mx-auto py-20">
-			<h1 class="text-4xl py-10">👋 Hola, soy Juan!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to
-				build a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like
-				Tailwind, React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul class="list-disc pl-5 py-3">
-				<li class="pl-2">Edit this page in <code class="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline">src/pages/index.astro</code></li>
-				<li class="pl-2" >Edit the site header items in <code class="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline">src/components/Header.astro</code></li>
-				<li class="pl-2">Add your name to the footer in <code class="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline">src/components/Footer.astro</code></li>
-				<li class="pl-2">Check out the included blog posts in <code class="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline">src/pages/blog/</code></li>
-				<li class="pl-2">Customize the blog post page layout in <code class="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 no-underline">src/layouts/BlogPost.astro</code></li>
-			</ul>
-			
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="es">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main
+      class="leading-normal max-w-2xl mx-auto py-10 px-2 text-base md:text-lg md:py-16"
+    >
+      <h1 class="text-2xl py-5 md:text-3xl md:py-6">👋 Hola, soy Juan!</h1>
+      <p>
+        Durante más de una década he trabajado en diferentes posiciones dentro
+        del área de Recursos Humanos, sin embargo fue un día, de 2020 cuando
+        descubrí el mundo de la programación y me picó el bicho por construir
+        cosas. 🚧👷
+      </p>
+      <br />
+      <p>
+        Desde entonces, aunque solo sea por hobby, he seguido aprendiendo cada
+        día, trabajando y haciendo pequeños proyectos con las nuevas
+        herramientas que quería aprender en cada momento.
+      </p>
+      <Image
+        class="w-full h-56 object-cover py-6"
+        src={maiCoverImage}
+        alt="mai-cover logo"
+      />
+      <p>
+        En <span
+          class="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100"
+          >mAI-Cover</span
+        >, mi último proyecto, he querido poner un poco de lo aprendido en mis
+        años como responsable de RRHH, pero sobre todo averiguar si sería capaz
+        de crear un SaaS completo desde cero. Con esta solución busco ayudar a
+        candidatos y a profesionales cuando les llega el momento de enfrentarse
+        a esos documentos que les obligan a salir de su zona de confort, y tener
+        que hablar en el lenguaje de Recursos Humanos.
+      </p>
+
+      <br />
+      <p>
+        El desarrollo de mis últimos proyectos me ha aportado mucho aprendizaje
+        🧐 y por primera vez siento que me gustaría compartir, ya es hora de
+        tratar de aportar un poco a los que como yo, no se cansan de navegar
+        buscando respuestas. y por eso estamos aquí.
+      </p>
+      <ul class="flex flex-col gap-4 py-5">
+        {
+          lastPosts.map((post) => (
+            <PostCard
+              slug={post.slug}
+              heroImage={post.data.heroImage}
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              editDate={post.data.updatedDate}
+            />
+          ))
+        }
+      </ul>
+
+      <!-- <div class="flex flex-col gap-2 py-4">
+        <PostCard />
+      </div> -->
+
+      <p>
+        Por último, soy un firme creyente en la posibilidad de transformar un
+        hobby en una profesión 🔥. Así que, si consideras que puedo aportar a tu
+        empresa o proyecto, estaré encantado de que te pongas en contacto
+        conmigo.
+      </p>
+    </main>
+    <Footer />
+  </body>
 </html>

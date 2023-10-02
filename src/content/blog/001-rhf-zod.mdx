@@ -1,0 +1,280 @@
+---
+title: 'Validación de formularios con React Hook Form y Zod'
+description: 'Lorem ipsum dolor sit amet'
+pubDate: 'Oct 02 2023'
+heroImage: '/rhf_zod.png'
+---
+
+En cualquier proyecto web o aplicación, nos vamos a encontrar siempre con algún tipo de formulario desde el que recogeremos la información que nos de el usuario, y también un endpoint que recibirá esa información para procesarla, guardarla en base de datos o hacer cosas con ella.
+
+Todo muy bonito pero claro, como toda operación que incluya de interacción humana, se vuelve un origen de problemas.
+
+- El humano va a meter información que no corresponde en cada una de las cagitas, y debemos evitarlo.
+- Cuando lo evitemos, el humano no va a saber que ha hecho mal, y tendremos que decírselo.
+- Hay una especie de humanos listos que saben mandar información a tu querido backend, saltándose el formulario, por lo que puede mandarte cualquier cosa rara y/o diabólica, por lo que debes protegerte de estos envíos.
+
+Por todo esto, y aunque los humanos son un poco molestos, como desarrolladores tenemos la obligación de tenerlos contentos. Para ello tenemos un par de herramientas que combinadas nos van a hacer la vida mucho más fácil.
+
+## React Hook Form
+
+Hay mil tipos de formularios y esta librería esta llena de recursos y hooks que nos van a ayudar a crear, gestiónar y validar nuestros formularios en React. Hoy no voy a entrar en el detalle de todo lo que ofrece, pero os recomiendo echar un ojo a su documentación.
+
+## Zod
+
+Zod es un supervillano de Supermán… <span class='text-4xl'>🦸‍♂️🦹‍♂️</span>
+
+Pero además, es una librería que se ha vuelto MUY popular entre los usuarios de Typescript, ya que nos permite hacer una validación en tiempo de ejecución para que el Schema o formato de la información que entra para ser procesada por nuestra aplicación, sea el que esperamos y no cualquier cosa loca que se le pueda ocurrir al humano en un momento de desorden emocional.
+
+Para demostrar como podemos combinar estas dos herramientas crearemos un formulario de registro de usuarios en nuestra aplicación en Next js, junto con un endpoint para guardarlos en nuestra base de datos.
+
+Para empezar, crearemos un nuevo archivo donde indicar nuestro esquema de validación tanto para el formulario de Login como el de Registro ya que en realidad son muy similares. Éste será un formulario de registro sencillo, con Nombre de Usuario, Email y Contraseña.
+
+```typescript
+//src/schema/user.schema.ts
+
+import * as z from 'zod'
+
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: 'El campo email es obligatorio' })
+    .email({ message: 'Revisa el formato del email' }),
+  password: z
+    .string()
+    .min(4, { message: 'La contraseña debe contener entre 4 y 12 caracteres' })
+    .max(12, {
+      message: 'La contraseña debe contener entre 4 y 12 caracteres',
+    }),
+})
+
+export const signUpSchema = loginSchema.extend({
+  userName: z
+    .string()
+    .min(1, { message: 'El nombre de usuario es obligatorio' }),
+})
+
+export type LoginType = z.TypeOf<typeof loginSchema>
+export type SignUpType = z.TypeOf<typeof signUpSchema>
+```
+
+Como podéis ver, para cada uno de los campos, Zod nos permite indicar no solo el tipo de dato que se debe incluir, si no también los criterios de validación e incluso el mensaje de error que indicaremos llegado el momento. Que queréis que os diga a mi esto me parece la leche.
+
+Por otro lado, Zod también permite, inferir el Tipado de nuestro formulario a partir del Schema de validación.
+
+Todo esto en un par de lineas de código. <span class="text-3xl">🔥</span>
+
+A continuación, daremos un poco de forma y estilos básicos a nuestro Formulario,
+
+```tsx
+//src/components/SignUpForm.tsx
+'use client'
+
+function SignUpForm() {
+  return (
+    <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
+      <form onSubmit={}>
+        <div className="mb-3">
+          <label className="text-sm ml-2" htmlFor="userName">
+            Nombre de usuario
+          </label>
+          <input
+            type="text"
+            id="userName"
+            className="mt-2 w-full rounded-md p-2"
+            placeholder="Susana"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="text-sm ml-2" htmlFor="email">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="mt-2 w-full rounded-md p-2"
+            placeholder="susana@acme.com"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="text-sm ml-2" htmlFor="password">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            id="password"
+            className=" mt-2 w-full rounded-md p-2"
+          />
+        </div>
+
+        <button
+          className="w-full mt-4 bg-black hover:bg-[#24292F]/90 py-3 text-slate-50  text-xl"
+          type="submit"
+        >
+          Regístrate
+        </button>
+      </form>
+      <p className="mt-4">
+        ya tienes cuenta?{' '}
+        <Link className="text-blue-800" href="/signin">
+          Inicia sesión
+        </Link>
+      </p>
+    </div>
+  )
+}
+
+export default SignUpForm
+```
+
+Ahora, a partir del hook `useForm` desestructuraremos una serie de herramientas que nos van a ayudar a hacer que este formulario funcione como es debido.
+
+```tsx
+//src/components/SignUpForm.tsx
+'use client'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { signUpSchema, SignUpType } from '@/schema/user.schema'
+
+function SignUpForm() {
+
+const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isLoading},
+    //validación bien hecha
+	  } = useForm<SignUpType>()
+
+  return (
+    <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
+//...
+
+```
+
+El método register, nos ayudará a registrar nuestros inputs en el formulario, y el resto a gestionar el estado y los errores del formulario, handleSubmit es como un envoltorio que utilizaremos para nuestra función onSubmit.
+
+Si os fijáis, también nos hemos creado el SignUpType, con el tipado de los campos que vamos a registrar en nuestro formulario, y se lo hemos dado al useForm para que sepa qué campos son los que debe esperar.
+
+Con todo esto actualizamos un poco nuestro formulario para que haga uso de algunas estas nuevas herramientas.
+
+```tsx
+//src/components/SignUpForm.tsx
+'use client'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { signUpSchema, SignUpType } from '@/schema/user.schema'
+
+function SignUpForm() {
+
+const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isLoading},
+	  } = useForm<SignUpType>()
+
+const onSubmit: SubmitHandler<SignUpType> = async (data) => {
+    try {
+      console.log(data)
+    } catch (error) {
+      //hay que pulir esto
+
+      console.log(error)
+    }
+  }
+
+return (
+    <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-3">
+          <label className="text-sm ml-2" htmlFor="company_name">
+            Nombre de usuario
+          </label>
+          <input
+            type="text"
+            id="userName"
+            className="mt-2 w-full rounded-md p-2"
+            placeholder="Susana"
+            {...register('userName')}
+          />
+          {errors.userName && (
+            <span className="text-red-500">{errors.userName.message}</span>
+          )}
+        </div>
+
+       //...
+
+
+```
+
+Como hemos dicho, utilizaremos el método **register** para registrar cada uno de nuestros inputs, y añadiremos un `<span>` bien rojo debajo de cada uno de ellos y que se renderizará solo cuando existan **errors**, lo que nos permitirá mostrar de que error se trata, por último utilizaremos la función **handleSubmit**, para envolver nuestra función onSubmit.
+
+Pero aquí es donde viene la magia…
+
+Con solo un par de lineas más uniremos toda la potencia de validación de Zod con la gestión de errores de React Hook Form.
+
+```tsx
+'use client'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { signUpSchema, SignUpType } from '@/schema/user.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+function SignUpForm() {
+
+const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isLoading},
+	  } = useForm<SignUpType>({ resolver: zodResolver(signUpSchema) })
+
+const onSubmit: SubmitHandler<ISignUp> = async (data) => {
+    try {
+      console.log(data)
+    } catch (error) {
+      //hay que pulir esto
+
+      console.log(error)
+    }
+  }
+
+return (
+    <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
+
+
+//...
+
+```
+
+Y listo, echa un vistazo…
+
+import SignUpForm from '../../components/blogComponents/react/ReactHFandZod.tsx'
+
+<SignUpForm client:visible />{' '}
+
+Por último y rápidamente vamos a ver como aplicar también los Tipos y la lógica de validación que hemos creado en nuestro user.schema.ts para asegurarnos de que no nos entran formatos o información indeseada o maliciosa en nuestro endpoint.
+
+```typescript
+import { ZodError } from 'zod'
+import { ISignUp, signUpSchema } from '../../../schema/user.schema'
+import { NextResponse } from 'next/server'
+
+export async function POST(req: Request) {
+  const data: ISignUp = await req.json()
+
+  try {
+    const cleanNewUserData = signUpSchema.parse(data)
+
+    //do something with the clean data
+    console.log(cleanNewUserData)
+
+    return NextResponse.json(cleanNewUserData)
+  } catch (err) {
+    //send back error
+    if (err instanceof ZodError) {
+      return NextResponse.json(err, { status: 400 })
+    }
+    //some other error handling
+  }
+}
+```
+
+Como veis el Schema con la información de validación de nuestro input, incluye también un método parse que constituirá la forma habitual de validar la información, ya que lanza un error de tipo ZodError en el momento en el que falle alguno de los criterios de validación.
