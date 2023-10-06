@@ -1,4 +1,6 @@
 {
   "prettier.documentSelectors": [".astro"],
-  "workbench.tree.indent": 4
+  "workbench.tree.indent": 4,
+  "cSpell.enabled": true,
+  "cSpell.language": "es-ES,es"
 }

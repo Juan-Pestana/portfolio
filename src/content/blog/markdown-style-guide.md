@@ -1,17 +1,17 @@
 ---
-title: 'Markdown Style Guide'
-description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-pubDate: 'Jul 01 2022'
-heroImage: '/blog-placeholder-1.jpg'
+title: 'Guia básica de Markdown'
+description: 'Esta es una pequeña guia rápida de como usar la sintaxis de Markdown. '
+pubDate: 'Oct 01 2023'
+heroImage: '/markdown.png'
 ---
 
-Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
+Aquí tenéis una pequeña guia rápida de como usar la sintaxis de Markdown.
 
-## Headings
+## Encabezados
 
-The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
+Las siguientes etiquetas `<h1>`—`<h6>` representan los seis niveles de encabezado `<h1>` es el más alto y `<h6>` el más bajo
 
-# H1 💩
+# H1
 
 ## H2
 
@@ -23,87 +23,88 @@ The following HTML `<h1>`—`<h6>` elements represent six levels of section head
 
 ###### H6
 
-## Paragraph
+## Párrafos
 
 Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.
 
 Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.
 
-## Images
+## Imagenes
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
 ![Alt text](./full/or/relative/path/of/image)
 ```
 
-#### Output
+#### Se muestra
 
 ![blog placeholder](/blog-placeholder-about.jpg)
 
-## Blockquotes
+## Blockquotes o Citas
 
 The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviationsn 🔥 .
+El elemento Blockquote o Cita representa el contenido que está siendo citado y que proviene de otra fuente.
 
-### Blockquote without attribution
+### Citas sin Atribución
 
-#### Syntax
+#### Sintaxis
 
 ```markdown
-> Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
-> **Note** that you can use _Markdown syntax_ within a blockquote.
+> Es el vecino el que elige al alcalde y es el alcalde el que quiere que sean los vecinos el alcalde.
+> **Fijate** que puedes seguir utilizando _syntaxis Markdown_ dentro de un texto citado.
 ```
 
-#### Output
+#### Muestra
 
-> Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
-> **Note** that you can use _Markdown syntax_ within a blockquote.
+> Es el vecino el que elige al alcalde y es el alcalde el que quiere que sean los vecinos el alcalde.
+> **Fijate** que puedes seguir utilizando _syntaxis Markdown_ dentro de un texto citado.
 
 ### Blockquote with attribution
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
-> Don't communicate by sharing memory, share memory by communicating.<br>
-> — <cite>Rob Pike[^1]</cite>
+> De todas las historias de la Historia, la más triste sin duda es la de España, porque termina mal.<br>
+> — <cite>Jaime Gil de Viedma[^1]</cite>
 ```
 
-#### Output
+#### Muestra
 
-> Don't communicate by sharing memory, share memory by communicating.<br>
-> — <cite>Rob Pike[^1]</cite>
+> De todas las historias de la Historia, la más triste sin duda es la de España, porque termina mal.<br>
+> — <cite>Jaime Gil de Viedma[^1]</cite>
 
-[^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
+[^1]: Esta cita fue extraida del poema _Apología y petición_, de su libro Moralidades, 1959.
 
-## Tables
+## Tablas
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
-| Italics   | Bold     | Code   |
-| --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
+| Itálica   | Negrita     | Código   |
+| --------- | ----------- | -------- |
+| _italica_ | **Negrita** | `codigo` |
 ```
 
-#### Output
+#### Muestra
 
-| Italics   | Bold     | Code   |
-| --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
+| Itálica   | Negrita     | Código   |
+| --------- | ----------- | -------- |
+| _italica_ | **Negrita** | `Código` |
 
-## Code Blocks
+## Bloques de Código
 
-#### Syntax
+#### Syntaxis
 
-we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntac, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
+Podemos utilizar 3 comillas invertidas ``` en una nueva linea, escribir el bloque de código, y cerrar este bloque con otras 3 comillas invertidas, en muchos casos podrás indicar el lenguaje del que se trata para que aplique el resaltado específico de ese lenguaje, por ejemplo html, javascript, css, markdown, typescript, txt, bash
 
 ````markdown
 ```html
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
+    <title>Aprendiendo Markdown</title>
   </head>
   <body>
     <p>Test</p>
@@ -112,14 +113,14 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 ```
 ````
 
-Output
+Muestra
 
-```html :filename
+```html
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
+    <title>Aprendiendo Markdown</title>
   </head>
   <body>
     <p>Test</p>
@@ -127,88 +128,88 @@ Output
 </html>
 ```
 
-## List Types
+## Tipos de lista
 
-### Ordered List
+### Lista numerada
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
-1. First item
-2. Second item
-3. Third item
+1. Primer item
+2. Segundo item
+3. Tercer item
 ```
 
-#### Output
+#### Muestra
 
-1. First item
-2. Second item
-3. Third item
+1. Primer item
+2. Segundo item
+3. Tercer item
 
-### Unordered List
+### Lista no numerada
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
-- List item
-- Another item
-- And another item
+- Un item
+- Otro item
+- Y uno más
 ```
 
-#### Output
+#### Muestra
 
-- List item
-- Another item
-- And another item
+- Un item
+- Otro item
+- Y uno más
 
-### Nested list
+### Listas dentro de listas
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
-- Fruit
-  - Apple
-  - Orange
-  - Banana
-- Dairy
-  - Milk
-  - Cheese
+- Frutas
+  - Manzana
+  - Naranja
+  - Platano
+- Lacteos
+  - Yogurt
+  - Queso
 ```
 
-#### Output
+#### Muestra
 
-- Fruit
-  - Apple
-  - Orange
-  - Banana
-- Dairy
-  - Milk
-  - Cheese
+- Frutas
+  - Manzana
+  - Naranja
+  - Platano
+- Lacteos
+  - Yogurt
+  - Queso
 
-## Other Elements — abbr, sub, sup, kbd, mark
+## Otros elementos — abbr, sub, sup, kbd, mark
 
-#### Syntax
+#### Syntaxis
 
 ```markdown
-<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
+<abbr title="Graphics Interchange Format">GIF</abbr> es un formato de imagen.
 
 H<sub>2</sub>O
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
-Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
+Teclea <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Supr</kbd> para cerrar Sesión.
 
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+La mayoría de las <mark>salamandras</mark> son nocturnas, y cazan insectos, bichos, y otros animales pequeños.
 ```
 
-#### Output
+#### Muestra
 
-<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
+<abbr title="Graphics Interchange Format">GIF</abbr> es un formato de imagen.
 
 H<sub>2</sub>O
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
-Press <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd> to end the session.
+Teclea <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Supr</kbd> para cerrar Sesión.
 
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+La mayoría de las <mark>salamandras</mark> son nocturnas, y cazan insectos, bichos, y otros animales pequeños.
