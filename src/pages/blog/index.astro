@@ -24,7 +24,7 @@ const posts = (await getCollection('blog')).sort(
         <div>
           <h2 class="font-semibold text-2xl">Ultimos Post</h2>
         </div>
-        <ul class="flex flex-col gap-4 py-12">
+        <ul class="flex flex-col py-12">
           {
             posts.map((post, i) => (
               <PostCard
@@ -41,7 +41,5 @@ const posts = (await getCollection('blog')).sort(
       </section>
     </main>
     <Footer />
-
-     ))
   </body>
 </html>
