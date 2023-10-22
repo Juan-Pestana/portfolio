@@ -1,4 +1,5 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useState } from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -24,9 +25,12 @@ type LoginType = z.TypeOf<typeof loginSchema>
 type SignUpType = z.TypeOf<typeof signUpSchema>
 
 function SignUpForm() {
+  const [success, setSuccess] = useState(false)
+
   const {
     register,
     handleSubmit,
+    reset,
     setError,
     formState: { errors, isLoading },
     //validación bien hecha
@@ -35,12 +39,14 @@ function SignUpForm() {
 
   const onSubmit: SubmitHandler<SignUpType> = async (data) => {
     try {
-      console.log(data)
+      setSuccess(true)
     } catch (error) {
-      //hay que pulir esto
-
       console.log(error)
     }
+    setTimeout(() => {
+      setSuccess(false)
+      reset()
+    }, 2000)
   }
   return (
     <div className="w-full max-w-xl my-10 mx-auto py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
@@ -96,6 +102,11 @@ function SignUpForm() {
         >
           Regístrate
         </button>
+        {success && (
+          <p className="text-green-500 font-semibold text-2xl text-center">
+            success
+          </p>
+        )}
       </form>
       <p className="mt-4">
         ya tienes cuenta?{' '}

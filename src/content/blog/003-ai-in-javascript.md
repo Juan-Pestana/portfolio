@@ -9,13 +9,13 @@ El boom de la Inteligencia Artificial ha dado un impulso creativo enorme en el d
 
 Hasta yo, como programador amateur, me he animado a desarrollar [mAI-Cover](https://www.mai-cover.com/), una pequeña WebApp muy molona que deberías conocer.
 
-Sin embargo, hay una detalle casi omnipresente en todas las aplicaciones, tutoriales o documentación sobre IA, y es que casi todo está escrito en Python 🐍, y para los que no dominamos este lenguaje _todavía_… resulta un poco inaccesible.
+Sin embargo, hay una detalle casi omnipresente en todas las aplicaciones, tutoriales o documentación sobre IA, y es que casi todo está escrito en **Python** 🐍, y para los que no dominamos este lenguaje _todavía_… resulta un poco inaccesible.
 
 ![Not anymore](/langchain/notanymore.gif)
 
 Hoy quiero llamar la atención sobre [Langchain](https://js.langchain.com/docs/get_started/introduction) un potente Framework Open Source, que nos ofrece una estupenda suite de herramientas para trabajar y extender las capacidades de ChatGPT y en realidad, casi cualquier otro modelo.
 
-La versión principal está diseñada para ser utilizada en Python, sí, pero lo bueno es que también cuenta con una versión para ser utilizada en Javascript que podemos usar en cualquiera de nuestras aplicaciones de node.
+La versión principal está diseñada para ser utilizada en Python sí, pero lo bueno es que también cuenta con una versión para ser utilizada en Javascript que podemos usar en cualquiera de nuestras aplicaciones de **Node**.
 
 Pero...
 
@@ -96,8 +96,6 @@ export const run = async () => {
 }
 ```
 
-Te recomiendo echar un vistazo a la [Documentación](https://js.langchain.com/docs/get_started/introduction) y te garantizo que te hará volar la imaginación para tu próximo proyecto.
+Te recomiendo echar un vistazo a la [Documentación](https://js.langchain.com/docs/get_started/introduction) y te garantizo que te hará volar la imaginación para tu próximo proyecto. Aunque te lo advierto, igual que todo el ecosistema, esta cambia con frecuencia. Yo a veces me paso solo para ver que hay de nuevo por ahí, hay una comunidad brutal y es impresionante a la velocidad a la que actualizan y añaden contenido.
 
-Este post es una simple introducción a qué es Langchain y que es lo que significa para el desarrollo de aplicaciones basadas en Inteligencia Artificial.
-
-Si te ha sabido a poco en un próximo post crearemos paso a paso un chatbot capaz de responder sobre tus documentos.
+Este post es una simple introducción a qué es **Langchain** y que es lo que significa para el desarrollo de aplicaciones basadas en Inteligencia Artificial. Si te ha sabido a poco en un próximo post crearemos paso a paso un chatbot capaz de responder sobre tus documentos.
