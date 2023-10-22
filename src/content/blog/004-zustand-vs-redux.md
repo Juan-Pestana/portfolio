@@ -1,5 +1,5 @@
 ---
-title: 'State Global en React, sin chorradas'
+title: 'Global State en React, sin chorradas'
 description: 'Gestores de estado global en React, Zustand Vs Redux'
 pubDate: 'Oct 19 2023'
 heroImage: '/ZustandRedux/ZustandRedux.png'
