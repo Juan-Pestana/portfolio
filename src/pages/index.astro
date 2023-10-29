@@ -22,7 +22,7 @@ const lastPosts = allPosts.slice(0, 3)
   <body>
     <Header title={SITE_TITLE} />
     <main
-      class="leading-normal max-w-2xl mx-auto py-10 px-2 text-base md:text-lg md:py-16"
+      class="leading-relaxed max-w-2xl mx-auto py-10 px-2 text-base md:text-lg md:py-16"
     >
       <h1 class="text-2xl py-5 md:text-3xl md:py-6">👋 Hola, soy Juan!</h1>
       <p>
@@ -34,14 +34,17 @@ const lastPosts = allPosts.slice(0, 3)
       <br />
       <p>
         Desde entonces, aunque solo sea por hobby, he seguido aprendiendo cada
-        día, trabajando y haciendo pequeños proyectos con las nuevas
-        herramientas que necesitaba o quería aprender en cada momento.
+        día, trabajando en pequeños proyectos y probando las nuevas herramientas
+        que necesitaba o quería aprender en cada momento.
       </p>
-      <Image
-        class="w-full h-56 object-cover py-6"
-        src={maiCoverImage}
-        alt="mai-cover logo"
-      />
+      <a href="http://mai-cover.com/" target="_blank">
+        <Image
+          class="w-full h-56 object-cover py-6"
+          src={maiCoverImage}
+          alt="mai-cover logo"
+        />
+      </a>
+
       <p>
         En <a
           href="http://mai-cover.com/"
@@ -58,9 +61,11 @@ const lastPosts = allPosts.slice(0, 3)
 
       <br />
       <p>
-        El desarrollo de mis últimos proyectos me ha aportado mucho aprendizaje
-        🧐 y siento que me gustaría compartir, ya es hora de tratar de aportar
-        un poco a los que como yo, no se cansan de navegar buscando respuestas.
+        Con el desarrollo de mis últimos proyectos he aprendido un montón 🧐 y
+        siento que me gustaría compartir las novedades sobre todas las
+        herramientas y soluciones con las que he trabajado. Ya es hora de tratar
+        de aportar un poco a los que como yo, no se cansan de navegar entre
+        blogs, videos y documentación buscando respuestas.
       </p>
       <p class="font-semibold italic pt-4">
         Aquí tenéis mis últimas publicaciones.
@@ -84,10 +89,9 @@ const lastPosts = allPosts.slice(0, 3)
         <PostCard />
       </div> -->
 
-      <p>
-        Por último. Me encantaría transformar este hobby en una profesión 🔥.
-        Así que, si consideras que puedo aportar a tu empresa o proyecto, estaré
-        encantado de que te pongas en contacto conmigo.
+      <p class="mt-12">
+        Por último, si consideras que puedo aportar a tu empresa o proyecto,
+        estaré encantado de que te pongas en contacto conmigo. 😊
       </p>
     </main>
     <Footer />

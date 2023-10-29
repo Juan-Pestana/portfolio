@@ -1,9 +1,12 @@
 ---
+import { Image } from 'astro:assets'
+import avatar from '../assets/images/avatar.jpg'
+
 const today = new Date()
 ---
 
-<footer class="mt-12">
-  &copy; {today.getFullYear()} Juan Pestana. All rights reserved.
+<footer class="mt-32">
+  &copy; {today.getFullYear()} Juan Pestana. All rights reserved .
   <div class="social-links">
     <a
       class="px-3"
@@ -37,10 +40,13 @@ const today = new Date()
       >
     </a>
   </div>
+  <div class="mx-auto w-24 h-24 overflow-hidden rounded-full my-12">
+    <Image class="object-cover" src={avatar} alt="mai-cover logo" />
+  </div>
 </footer>
 <style>
   footer {
-    padding: 2em 1em 6em 1em;
+    padding: 2em 1em 2em 1em;
     background: linear-gradient(var(--gray-gradient)) no-repeat;
     color: rgb(var(--gray));
     text-align: center;
