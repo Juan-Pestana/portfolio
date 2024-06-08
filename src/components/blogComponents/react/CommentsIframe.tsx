@@ -16,7 +16,7 @@ export default function CommentsIframe() {
           //@ts-ignore
 
           id="myFrame"
-          src="http://mai-comments.vercel.app/"
+          src="https://mai-comments.vercel.app/"
           width="100%"
           height={'1000px'}
           style={{
