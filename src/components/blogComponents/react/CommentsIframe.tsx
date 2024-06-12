@@ -19,7 +19,7 @@ export default function CommentsIframe() {
                  allow-forms
                  allow-same-origin allow-popups "
           id="myFrame"
-          src="http://localhost:3000/"
+          src="https://www.mai-comments.vercel.app/"
           width="100%"
           height={'1000px'}
           style={{
