@@ -14,7 +14,9 @@ export default function CommentsIframe() {
       <div className="mt-24 w-full h-94">
         <iframe
           //@ts-ignore
-
+          sandbox="allow-storage-access-by-user-activation
+                 allow-scripts
+                 allow-same-origin"
           id="myFrame"
           src="http://localhost:3000/"
           width="100%"
