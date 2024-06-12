@@ -16,7 +16,7 @@ export default function CommentsIframe() {
           //@ts-ignore
           sandbox="allow-storage-access-by-user-activation
                  allow-scripts
-                 allow-same-origin"
+                 allow-same-origin allow-popups"
           id="myFrame"
           src="http://localhost:3000/"
           width="100%"
